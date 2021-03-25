@@ -1,0 +1,18 @@
+name: BubbleSortTest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v1
+    - name: configure
+      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug ..
+    - name: make
+      run: cd build && make
+    - uses: education/autograding@v1
